@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -30,11 +31,83 @@
     button:hover {
       background: #c00;
     }
+    #message {
+      margin-top: 40px;
+      font-size: 20px;
+      color: #00ff99;
+      min-height: 80px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out, transform 0.5s;
+      transform: translateY(20px);
+    }
+    #message.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    textarea {
+      width: 80%;
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 20px;
+      height: 100px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
   <h1>📞 Звонок Вовану</h1>
-  <p>Нажми, если нужно порешать вопрос.</p>
-  <button onclick="playPhrase()">Позвонить Вовану</button>
+  <p>Скажи свою проблему — Вован решит по понятиям.</p>
+  <textarea id="problem" placeholder="Опиши свою проблему..."></textarea>
+  <button onclick="callVovan()">Позвонить Вовану</button>
+  <div id="message"></div>
+
+  <audio id="vovanAudio1" src="vovan_001.mp3"></audio>
+  <audio id="vovanAudio2" src="vovan_002.mp3"></audio>
+  <audio id="vovanAudio3" src="vovan_003.mp3"></audio>
+  <audio id="vovanAudio4" src="vovan_004.mp3"></audio>
+  <audio id="vovanAudio5" src="vovan_005.mp3"></audio>
+  <audio id="vovanAudio6" src="vovan_006.mp3"></audio>
+  <audio id="vovanAudio7" src="vovan_007.mp3"></audio>
+  <audio id="vovanAudio8" src="vovan_008.mp3"></audio>
+  <audio id="vovanAudio9" src="vovan_009.mp3"></audio>
+  <audio id="vovanAudio10" src="vovan_010.mp3"></audio>
+
+  <script>
+    const phrases = [
+      { text: "На связи. Сейчас всё будет по красоте.", audio: "vovanAudio1" },
+      { text: "Спокойно. Деньги любят уверенных.", audio: "vovanAudio2" },
+      { text: "Сегодня всё решается. Я на линии.", audio: "vovanAudio3" },
+      { text: "Без нервов. Всё идёт по плану.", audio: "vovanAudio4" },
+      { text: "Ты уже Вован — просто вспомни это и двигай.", audio: "vovanAudio5" },
+      { text: "Сейчас поднимем — сядем, поговорим.", audio: "vovanAudio6" },
+      { text: "Решим. Мы же не первый день в теме.", audio: "vovanAudio7" },
+      { text: "Ты не один. Держись.", audio: "vovanAudio8" },
+      { text: "Это не проблема. Это задача.", audio: "vovanAudio9" },
+      { text: "Ты уже сделал первый шаг. Двигаемся дальше.", audio: "vovanAudio10" }
+    ];
+
+    function callVovan() {
+      const problem = document.getElementById("problem").value;
+      if (problem.trim() === "") {
+        alert("Ты забыл сказать свою проблему, брат.");
+        return;
+      }
+
+      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      const el = document.getElementById("message");
+
+      el.classList.remove("visible");
+      setTimeout(() => {
+        el.innerText = `Вован говорит: ${randomPhrase.text}`;
+        el.classList.add("visible");
+      }, 100);
+
+      document.getElementById(randomPhrase.audio).currentTime = 0;
+      document.getElementById(randomPhrase.audio).play();
+    }
+  </script>
 </body>
 </html>
