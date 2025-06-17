@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Звонок Вовану</title>
+  <link rel="manifest" href="manifest.json" />
+  <script src="app.js" defer></script>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    button {
+      padding: 20px;
+      font-size: 1.5em;
+      background: #f00;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      margin-top: 30px;
+    }
+    button:hover {
+      background: #c00;
+    }
+  </style>
+</head>
+<body>
+  <h1>📞 Звонок Вовану</h1>
+  <p>Нажми, если нужно порешать вопрос.</p>
+  <button onclick="playPhrase()">Позвонить Вовану</button>
+</body>
+</html>
